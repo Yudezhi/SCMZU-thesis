@@ -1,0 +1,439 @@
+%%
+%% This is file `njuthesis-graduate.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% njuthesis.dtx  (with options: `definition-g')
+%% 
+%% Copyright (C) 2021 - 2022
+%% by Nanjing University Linux User Group
+%% <git+nju-lug-email-3104-issue-@yaoge123.cn>
+%% 
+%% This file may be distributed and/or modified under the conditions of
+%% the LaTeX Project Public License, either version 1.3c of this license
+%% or (at your option) any later version.  The latest version of this
+%% license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of LaTeX version
+%% 2005/12/01 or later.
+%% 
+%% To produce the documentation run the original source files ending with
+%% `.dtx' through XeTeX.
+%% 
+\GetIdInfo $Id: njuthesis.dtx 0.16.1 2022-03-27 13:00:00 +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
+  {Graduate definition file for njuthesis}
+\ProvidesExplFile{njuthesis-graduate.def}
+  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\tl_const:Nn \c__nju_pagestyle_tl { headings }
+\__nju_declare_element:nn { cover / g / emblem-img }
+  {
+    content     = \njuemblem [ black ] { ! } { 1.9 cm },
+    bottom-skip = 1 cm
+  }
+\__nju_declare_element:nn { cover / g / name-img }
+  {
+    content     = \njuname [ black ] { 4.4 cm } { ! },
+    bottom-skip = 2 cm
+  }
+\__nju_declare_element:nn { cover / g / type }
+  {
+    content     =
+      \__nju_spread_box:nnV { 9 em } { } \l__nju_info_type_tl,
+    format      = \zihao { -1 } \bfseries,
+    bottom-skip = 1 cm
+  }
+\__nju_declare_element:nn { cover / g / degree }
+  {
+    content     = \c__nju_name_apply_tl,
+    format      = \zihao { -1 } \bfseries,
+    bottom-skip = 1 cm plus 1.5 fil
+  }
+\__nju_declare_element:nn { cover / g / info }
+  {
+    content     = \__nju_cover_info_g:nn { 6.2 em } { 18 em },
+    bottom-skip = 0 pt plus 1.5 fil
+  }
+\__nju_declare_element:nn { cover / g / date }
+  { content = \l__nju_info_sm_date_tl }
+\cs_new_protected:Npn \__nju_cover_info_g:nn #1#2
+  {
+    \begin{minipage} { #1 + #2 + 0.3 em }
+      \raggedleft
+      \__nju_multiline_title:nnn { } { #1 } { #2 }
+      \clist_map_inline:nn { author, major, field, supv_full }
+        { \__nju_cover_entry:nnn { ##1 } { #1 } { #2 } }
+    \end{minipage}
+  }
+\__nju_declare_element:nn { cover / g / back }
+  {
+    content = \__nju_cover_back_g:,
+    align   = l
+  }
+\cs_new_protected:Npn \__nju_cover_back_g:
+  {
+    \__nju_spread_box:nnV { 6.2 em } { \kaishu } \c__nju_name_id_tl
+    { : \__nju_quad: } \l__nju_info_id_tl
+    \__nju_vskip:
+    \__nju_spread_box:nnV { 6.2 em } { \kaishu } \c__nju_name_df_date_tl
+    { : \__nju_quad: } \l__nju_info_df_date_tl
+    \__nju_vskip:
+    \__nju_spread_box:nnV { 6.2 em } { \kaishu } \c__nju_name_supv_full_tl
+    { : \__nju_quad: } \skip_horizontal:n { 8 em } \c__nju_name_sign_tl
+  }
+\__nju_declare_element:nn { cover / g / en / title }
+  {
+    content     = \l__nju_info_title_en_tl,
+    format      = \bf \sffamily \zihao { 2 },
+    bottom-skip = 2 cm
+  }
+\__nju_declare_element:nn { cover / g / en / top }
+  {
+    content      =
+      { by }
+      \skip_vertical:N \c_zero_skip
+      \textbf { \sffamily \l__nju_info_author_en_tl }
+      \skip_vertical:n { .5 cm }
+      { Supervised~ by }
+      \skip_vertical:N \c_zero_skip
+      \textsf { \l__nju_info_supv_full_en_tl },
+    format      = \zihao { 4 },
+    bottom-skip = 0 pt plus 1.2 fil
+  }
+\__nju_declare_element:nn { cover / g / en / middle }
+  {
+    content     =
+      \c__nju_cover_en_text_tl \__nju_vskip:
+      \textsc { \clist_item:Nn \c__nju_name_degree_en_clist
+                  { \g__nju_info_degree_int } }
+      \__nju_vskip: { in } \__nju_vskip:
+      \l__nju_info_major_en_tl,
+    bottom-skip = 2 cm
+  }
+\__nju_declare_element:nn { cover / g / en / emblem-img }
+  {
+    content     = \njuemblem [ black ] { ! } { 2.5 cm },
+    bottom-skip = 1.5 cm
+  }
+\__nju_declare_element:nn { cover / g / en / bottom }
+  {
+    content =
+      \l__nju_info_dept_en_tl \skip_vertical:N \c_zero_skip
+      \c__nju_name_nju_en_tl  \skip_vertical:n { 1 cm }
+      \l__nju_info_sm_date_en_tl
+  }
+\__nju_declare_element:nn { cover / nl / top }
+  {
+    content     = \__nju_cover_top_nl:,
+    bottom-skip = 2 cm
+  }
+\__nju_declare_element:nn { cover / nl / name }
+  {
+    content     =
+      \__nju_spread_box:nnV { 6 em } { } \c__nju_name_title_tl,
+    format      = \zihao { -0 },
+    bottom-skip = 0 pt plus 1.2 fil
+  }
+\__nju_declare_element:nn { cover / nl / title }
+  {
+    content     = \__nju_cover_title_nl:,
+    format      = \zihao { 1 },
+    bottom-skip = 1 cm
+  }
+\__nju_declare_element:nn { cover / nl / middle }
+  {
+    content     = \__nju_cover_info_nl:,
+    format      = \zihao { 4 },
+    bottom-skip = 0 pt plus 1.2 fil
+  }
+\__nju_declare_element:nn { cover / nl / bottom }
+  {
+    content     = \__nju_cover_bottom_nl:,
+    bottom-skip = 1 cm,
+    align       = r
+  }
+\__nju_declare_element:nn { cover / nl / date }
+  {
+    content = \__nju_qquad: 年 \__nju_quad: 月 \__nju_quad: 日,
+    format  = \kaishu \zihao { 3 }
+  }
+\cs_new_protected:Npn \__nju_cover_top_nl:
+  {
+    \__nju_spread_box:nnV { 3.2 em } { } \c__nju_name_clc_tl   \__nju_hskip:
+    \__nju_ulined_center_box:nn { 9 em } { \l__nju_info_clc_tl   } \hfill
+    \__nju_spread_box:nnV { 3.2 em } { } \c__nju_name_seclv_tl \__nju_hskip:
+    \__nju_ulined_center_box:nn { 9 em } { \l__nju_info_seclv_tl } \\
+    \__nju_spread_box:nnV { 3.2 em } { } \c__nju_name_udc_tl   \__nju_hskip:
+    \__nju_ulined_center_box:nn { 9 em } { \l__nju_info_udc_tl   } \hfill \null
+  }
+\cs_new_protected:Npn \__nju_cover_title_nl:
+  {
+    \__nju_split_title:V \l__nju_info_title_tl
+    \__nju_multiline_box:nnnn { \l__nju_tmp_int } \l__nju_tmp_clist { 3 } { 15 em }
+    \skip_vertical:n { - 0.5 cm }
+    { \zihao { 4 } \c__nju_name_title_b_tl }
+    \skip_vertical:N \c_zero_skip
+    \__nju_ulined_center_box:nn { 4.5 em } { \l__nju_info_author_tl }
+    \skip_vertical:n { - 0.5 cm }
+    { \zihao { 4 } { ( } \c__nju_name_author_tl { ) } }
+  }
+\cs_new_protected:Npn \__nju_cover_info_nl:
+  {
+    \tl_set:Nn \l__nju_info_supv_tl
+      { \clist_item:Nn \l__nju_info_supv_clist { 1 } }
+    \tl_set:Nn \l__nju_info_supv_ttl_tl
+      { \clist_item:Nn \l__nju_info_supv_clist { 2 } }
+    \__nju_uline_entry:Nnnn   \l__nju_tmp_dim { supv_info } { supv   } { } \\
+    \__nju_ulined_center_box:nn { \textwidth } { \__nju_info:n { supv_ttl }
+    \__nju_quad: \__nju_info:n  { supv_cont } }                             \\
+    \__nju_uline_bientry:Nnnn \l__nju_tmp_dim { degree   } { degree  } { }
+    \__nju_uline_bientry:Nnnn \l__nju_tmp_dim { major_b  } { major   } { } \\
+    \__nju_uline_bientry:Nnnn \l__nju_tmp_dim { sm_date  } { sm_date } { }
+    \__nju_uline_bientry:Nnnn \l__nju_tmp_dim { df_date  } { df_date } { } \\
+    \__nju_full_uline:Nn \l__nju_tmp_dim { \c__nju_name_confer_tl }
+    \__nju_uline:n { \l__nju_tmp_dim }
+  }
+\cs_new_protected:Npn \__nju_cover_bottom_nl:
+  {
+    \__nju_name:n { chairman } \__nju_hskip:
+    \__nju_ulined_center_box:nn { 9 em } { \__nju_info:n { chairman } } \\
+    \__nju_name:n { reviewer } \__nju_hskip:
+    \__nju_multiline_box:nnnn { \l__nju_tmp_int }
+      { \l__nju_info_reviewer_clist } { 4 } { 9 em }
+  }
+\__nju_declare_page:nn { cover-g-front-default }
+  {
+    element  = { emblem-img, name-img, type, degree, info, date },
+    prefix   = cover / g /,
+    format   = \zihao { 3 } \kaishu,
+    top-skip = 1.5 cm
+  }
+\__nju_declare_page:nn { cover-g-back-default }
+  {
+    element  = { back },
+    prefix   = cover / g /,
+    format   = \zihao { 3 } \kaishu,
+    top-skip = 20 cm
+  }
+\__nju_declare_page:nn { cover-g-en-default }
+  {
+    element  = { title, top, middle, emblem-img, bottom },
+    prefix   = cover / g / en /,
+    top-skip = 0 pt plus 1.2 fil
+  }
+\__nju_declare_page:nn { cover-nl-default }
+  {
+    element = { top, name, title, middle, bottom, date },
+    prefix  = cover / nl /,
+    format  = \kaishu
+  }
+\cs_new_protected:Npn \__nju_make_cover:
+  {
+    \clist_map_inline:nn { front, back, en }
+      { \UseInstance { nju } { cover-g- ##1 -default } }
+  }
+\cs_new_protected:Npn \__nju_make_cover_nl:
+  { \UseInstance { nju } { cover-nl-default } }
+\cs_new_protected:Npn \__nju_make_orig_decl:
+  {
+    \chapter* { \c__nju_name_orig_decl_tl }
+    \thispagestyle { empty }
+    \c__nju_orig_decl_text_tl
+    \vfil
+    \begin{flushright}
+      \clist_map_inline:nn { orig_sign,     orig_date }
+        { \__nju_vskip: \__nju_name:n { ##1 } ： \__nju_uline:n { 7 em } }
+    \end{flushright}
+    \vfil
+  }
+\__nju_declare_element:nn { abstract / title }
+  {
+    content     = \__nju_abs_title:V \c__nju_name_abstract_title_tl,
+    format      = \bfseries \kaishu \zihao { -2 },
+    bottom-skip = 1.2 cm
+  }
+\__nju_declare_element:nn { abstract / info }
+  {
+    content     = \__nju_abs_info_g:n       { ： },
+    format      = \zihao {  4 } \kaishu,
+    bottom-skip = 2 cm,
+    align       = l
+  }
+\__nju_declare_element:nn { abstract / en / title }
+  {
+    content     = \__nju_abs_title:V \c__nju_name_abstract_title_en_tl,
+    format      = \bfseries \kaishu \zihao { -2 },
+    bottom-skip = 1.2 cm
+  }
+\__nju_declare_element:nn { abstract / en / info }
+  {
+    content     = \__nju_abs_info_en_g:n        { :~ },
+    format      = \zihao {  4 },
+    bottom-skip = 2 cm,
+    align       = l
+  }
+\__nju_declare_element:nn { abstract / mark }
+  {
+    content     = \c__nju_name_abstract_b_tl,
+    format      = \sffamily \zihao { -3 },
+    bottom-skip = 1 cm
+  }
+\__nju_declare_element:nn { abstract / en / mark }
+  {
+    content     = \c__nju_name_abstract_b_en_tl,
+    format      = \sffamily \zihao { -3 },
+    bottom-skip = 1 cm
+  }
+\cs_new_protected:Npn \__nju_abs_info_g:n #1
+  {
+    \__nju_uline_list:xnn
+      {
+        \clist_item:Nn \c__nju_name_type_clist { \g__nju_info_type_int }
+        \c__nju_name_title_a_tl #1
+      }
+      { \l__nju_info_title_tl } { \g__nju_abs_title_left_skip }
+    \__nju_full_uline:NV \l__nju_tmp_dim
+      {
+        \__nju_ulined_center_box:nn { 11 em } { \l__nju_info_major_tl }
+        \c__nju_name_major_a_tl
+        \__nju_ulined_center_box:nn { 4  em } { \l__nju_info_grade_tl }
+        \c__nju_name_grade_tl \c__nju_name_author_a_tl #1
+      }
+    \__nju_ulined_center_box:nn { \l__nju_tmp_dim }
+      { \l__nju_info_author_tl } \\
+    \__nju_full_uline:NV \l__nju_tmp_dim
+      { \c__nju_name_supv_a_tl #1 }
+    \__nju_ulined_center_box:nn { \l__nju_tmp_dim }
+      { \l__nju_info_supv_full_tl }
+  }
+\cs_new_protected:Npn \__nju_abs_info_en_g:n #1
+  {
+    \__nju_uline_list:xnn { \l__nju_info_type_en_tl #1 }
+        { \l__nju_info_title_en_tl } { \g__nju_abs_title_left_skip }
+    \clist_map_inline:nn { major, author, supv_full }
+      {
+        \__nju_uline_entry:Nnnn \l__nju_tmp_dim
+          { ##1 _en } { ##1 _en } { #1 } \par
+      }
+  }
+\cs_new_protected:Npn \__nju_make_abstract:
+  {
+    \UseInstance { nju } { abstract / title }
+    \UseInstance { nju } { abstract / info  }
+    \UseInstance { nju } { abstract / mark  }
+  }
+\cs_new_protected:Npn \__nju_make_abstract_en:
+  {
+    \UseInstance { nju } { abstract / en / title }
+    \UseInstance { nju } { abstract / en / info  }
+    \UseInstance { nju } { abstract / en / mark  }
+  }
+\clist_map_inline:nn
+  {
+    { acknowledgement } { 致\hspace{2em}谢              },
+    { id              } { 学号                          },
+    { notation        } { 符号表                        },
+    { orig_date       } { 日期                          },
+    { paperlist       } { 发表文章目录                  },
+    { pdf_creator     } { LaTeX~ with~ njuthesis~ class },
+    { preface         } { 前\hspace{2em}言              },
+    { supv_ii         } { 第二导师                      },
+    { supv_ttl        } { 职称                          }
+  }
+  { \__nju_define_name:nn #1 }
+\clist_map_inline:nn
+  {
+    { abstract   } { 摘要       } { ABSTRACT            },
+    % 用于书签的摘要名称字样
+    { abstract_a } { 中文摘要   } { ABSTRACT            },
+    % 用于小标题的摘要名称字样
+    { abstract_b } { 摘\qquad{}要 } { ABSTRACT          },
+    { appendix   } { 附录       } { appendix            },
+    { dept       } { 院系       } { DEPARTMENT          },
+    { figure     } { 图         } { figure              },
+    { keywords   } { 关键词：   } { Keywords:~          },
+    { lang       } { 中文       } { 英文                },
+    { nju        } { 中南民族大学   } { South-Central~Minzu~University },
+    { table      } { 表         } { table               }
+  }
+  { \__nju_define_name:nnn #1 }
+\clist_map_inline:nn
+  {
+    % 用于摘要的作者名称字样
+    { author_a     }
+      { \tl_item:Nn \l__nju_info_degree_tl { 1 } 士生姓名 },
+    { chairman     } { 答辩委员会主席：                 },
+    { clc          } { 分类号                           },
+    { confer       } { 学位授予单位和日期               },
+    { df_date      } { 论文答辩日期                     },
+    { degree       } { 申请学位级别                     },
+    { apply        }
+      { （申请 \l__nju_info_degree_tl 学位）              },
+    { field        } { 研究方向                         },
+    { g            } { 研究生                           },
+    { grade        } { 级                               },
+    % 用于摘要的专业名称字样
+    { major_a      } { 专业                             },
+    % 用于国家图书馆封面的专业名称字样
+    { major_b      } { 专业名称                         },
+    { orig_decl    }
+      { \c__nju_name_nju_tl 学位论文原创性声明            },
+    { orig_sign    } { 研究生签名                       },
+    { reviewer     } { 评阅人：                         },
+    { seclv        } { 密级                             },
+    { sign         } { （签字）                         },
+    { sm_date      } { 论文提交日期                     },
+    { supv         } { 导师                             },
+    % 用于摘要的导师名称字样
+    { supv_a       } { 指导教师（姓名、职称）           },
+    { supv_info    }
+      { 指导教师姓名、职务、职称、学位、单位名称及地址  },
+    % 用于普通封面的标题名称字样
+    { title        } { 论文题目                         },
+    % 用于摘要的标题名称字样
+    { title_a      } { 题目                             },
+    % 用于国家图书馆封面的标题名称字样
+    { title_b      } { （题名和副题名）                },
+    { udc          } { U D C                           }
+  }
+  { \__nju_define_name:nn #1 }
+\clist_map_inline:nn
+  {
+    { abstract_title }
+      { 中南民族大学 \l__nju_info_type_tl 中文摘要首页用纸 }
+      { 中南民族大学 \l__nju_info_type_tl 英文摘要首页用纸 },
+    { author    } { 作者姓名 } { POSTGRADUATE        },
+    { major     } { 专业方向 } { SPECIALIZATION      },
+    { supv_full } { 指导教师 } { MENTOR              }
+  }
+  { \__nju_define_name:nnn #1 }
+\tl_const:Nn \c__nju_cover_en_text_tl
+  {
+    A~ dissertation~ submitted~ to \\
+    the~ graduate~ school~ of~ Nanjing~ University \\
+    in~ partial~ fulfilment~ of~ the~ requirements~ for~ the~ degree~ of
+  }
+\tl_const:Nn \c__nju_orig_decl_text_tl
+  {
+    本人郑重声明，所提交的学位论文是本人在导师指导下独立进行科学研究工作
+    所取得的成果。除本论文中已经注明引用的内容外，本论文不包含其他个人或
+    集体已经发表或撰写过的研究成果，也不包含为获得南京大学或其他教育机构
+    的学位证书而使用过的材料。对本文的研究做出重要贡献的个人和集体，均已
+    在论文的致谢部分明确标明。本人郑重申明愿承担本声明的法律责任。
+  }
+\clist_map_inline:nn
+  {
+    { axiom      } { 公理 } { Axiom      },
+    { corollary  } { 推论 } { Corollary  },
+    { definition } { 定义 } { Definition },
+    { example    } { 例   } { Example    },
+    { lemma      } { 引理 } { Lemma      },
+    { proof      } { 证明 } { Proof      },
+    { theorem    } { 定理 } { Theorem    }
+  }
+  { \__nju_add_theorem_type:nnn #1 }
+\endinput
+%%
+%% End of file `njuthesis-graduate.def'.
